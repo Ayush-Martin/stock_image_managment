@@ -1,0 +1,9 @@
+services:
+  backend:
+    image: ayushmartin/stock_image_management:latest
+    restart: always
+    container_name: backend
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
