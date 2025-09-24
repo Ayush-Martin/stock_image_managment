@@ -1,5 +1,6 @@
 import App from "./app";
 import http from "http";
+import "reflect-metadata";
 
 import { envConfig } from "./shared/configs/env";
 import { connectToMongodb } from "./shared/configs/mongodb";
