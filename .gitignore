@@ -15,6 +15,7 @@ out/
 .vercel/
 .netlify/
 
+
 # Env & config
 *.env
 *.env.local
@@ -22,6 +23,7 @@ out/
 *.env.production
 *.env.test
 .env.*
+deploy/
 
 # Logs & debug
 npm-debug.log*
