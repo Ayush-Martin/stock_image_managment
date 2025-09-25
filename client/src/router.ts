@@ -1,6 +1,7 @@
 // import { lazy } from "react";
 
 //Auth Routes
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ForgotPasswordPage from "./pages/ForgetPasswordPage";
 import LoginRegisterPage from "./pages/LoginRegisterPage";
 import OTPVerificationPage from "./pages/OTPVerificationPage";
@@ -23,11 +24,15 @@ export const AuthRouter: Routes = [
     Component: OTPVerificationPage,
   },
   {
-    path: "forget-password",
+    path: "forgetPassword",
     Component: ForgotPasswordPage,
   },
   {
-    path: "reset-password",
+    path: "resetPassword",
     Component: ResetPasswordPage,
+  },
+  {
+    path: "changePassword",
+    Component: ChangePasswordPage,
   },
 ];

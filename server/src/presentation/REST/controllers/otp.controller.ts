@@ -22,7 +22,7 @@ class OTPController {
 
   public async verifyOTP(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const verifyOtpDTO = verifyOTPSchema.parse(req.body);
+      const verifyOtpDTO = verifyOTPSchema.parse(req.query);
 
       await this._otpVerificationUseCase.execute(verifyOtpDTO);
 

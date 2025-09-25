@@ -11,6 +11,7 @@ class OTPEntity {
   ) {}
 
   public isExpired(): boolean {
+    console.log(this.expiresAt, Date.now());
     return this.expiresAt.getTime() <= Date.now();
   }
 }

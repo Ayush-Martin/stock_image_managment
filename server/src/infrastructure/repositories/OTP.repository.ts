@@ -14,7 +14,7 @@ class OTPRepository implements IOTPRepository {
   }
 
   public async getOTPByEmail(email: string): Promise<OTPEntity | null> {
-    const data = await this._OTPModel.findOne({ email });
+    const data = await this._OTPModel.findOne({ email }).sort({ createdAt: -1 });
     if (!data) return null;
     return OTPMapper.toEntity(data);
   }

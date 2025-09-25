@@ -1,10 +1,51 @@
+import { loginWithPassword } from "@/api/auth.api";
 import Login from "@/components/auth/Login";
 import Register from "@/components/auth/Register";
+import { axiosPostRequest } from "@/config/axios";
+import LoginRegisterContext from "@/context/LoginRegisterContext";
+import { login } from "@/features/auth/slice/userSlice";
+import { AppDispatch } from "@/store";
+import { successPopup } from "@/utils/popup";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const LoginRegisterPage = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleLogin = async (email: string, password: string) => {
+    const data = await loginWithPassword(email, password);
+    if (!data) return;
+    dispatch(login(data));
+    navigate(from, { replace: true });
+    dispatch(login({ email, password }));
+  };
+
+  const handleRegister = async (
+    username: string,
+    email: string,
+    password: string
+  ) => {
+    const res = await axiosPostRequest("/auth/register", {
+      username,
+      email,
+      password,
+    });
+    if (!res) return;
+    successPopup(res.data || "OTP sent");
+
+    navigate("/auth/otp", {
+      state: {
+        email,
+        forAction: "register",
+      },
+    });
+  };
 
   return (
     <div className="bg-app-bg h-screen w-full flex items-center justify-center">
@@ -15,7 +56,9 @@ const LoginRegisterPage = () => {
         </h1>
 
         {/* Form */}
-        {isLogin ? <Login /> : <Register />}
+        <LoginRegisterContext.Provider value={{ handleLogin, handleRegister }}>
+          {isLogin ? <Login /> : <Register />}
+        </LoginRegisterContext.Provider>
 
         {/* Footer Links */}
         <div className="flex justify-between items-center mt-8 text-sm text-app-info underline">
@@ -27,7 +70,7 @@ const LoginRegisterPage = () => {
           </button>
 
           <Link
-            to="/auth/forget-password"
+            to="/auth/forgetPassword"
             className="hover:text-app-secondary transition-colors"
           >
             Forgot password?

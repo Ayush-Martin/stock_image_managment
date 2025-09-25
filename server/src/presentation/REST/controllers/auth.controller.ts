@@ -14,7 +14,6 @@ import { successResponse } from "../../../shared/utils/responseCreator";
 import { AuthResponseMessage } from "../../../shared/constants/responseMessages";
 import { binder } from "../../../shared/utils/binder";
 import { NextFunction, Request, Response } from "express";
-import { IOTPVerificationUseCase } from "../../../application/interface/useCases/auth/IOTPVerification.useCase";
 import { ICompleteRegistrationUseCase } from "../../../application/interface/useCases/auth/ICompleteRegistration.useCase";
 import { ILoginUseCase } from "../../../application/interface/useCases/auth/ILogin.useCase";
 import { RefreshTokenCookieOptions } from "../../../shared/configs/cookie";
@@ -28,7 +27,6 @@ import { IForgetPasswordUseCase } from "../../../application/interface/useCases/
 class AuthController {
   constructor(
     @inject(TYPES.IRegisterUseCase) private _registerUseCase: IRegisterUseCase,
-    @inject(TYPES.IOTPVerificationUseCase) private _otpVerificationUseCase: IOTPVerificationUseCase,
     @inject(TYPES.ICompleteRegistrationUseCase)
     private _completeRegistrationUseCase: ICompleteRegistrationUseCase,
     @inject(TYPES.ILoginUseCase) private _loginUseCase: ILoginUseCase,

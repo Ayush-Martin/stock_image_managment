@@ -7,19 +7,19 @@ import {
 
 const authRouter = Router();
 
-authRouter.post("/OTP/verify", otpController.verifyOTP);
-authRouter.post("/OTP/resend", otpController.resetOTP);
+authRouter.patch("/OTP/verify", otpController.verifyOTP);
+authRouter.put("/OTP/resend", otpController.resetOTP);
 
 authRouter.post("/register", authController.register);
 authRouter.post("/register/complete", authController.completeRegistration);
 
-authRouter.post("/refresh", authMiddleware.refreshTokenValidator, authController.refresh);
+authRouter.get("/refresh", authMiddleware.refreshTokenValidator, authController.refresh);
 
 authRouter.post("/login", authController.login);
 
 authRouter.post("/forgetPassword", authController.forgetPassword);
 authRouter.post("/resetPassword", authController.resetPassword);
-authRouter.post(
+authRouter.patch(
   "/changePassword",
   authMiddleware.accessTokenValidator,
   authController.changePassword,

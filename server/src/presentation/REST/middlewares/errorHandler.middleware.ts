@@ -13,8 +13,8 @@ class ErrorHandlerMiddleware {
   }
 
   public handle(err: IAppError | z.ZodError, req: Request, res: Response, _next: NextFunction) {
+    console.log(err);
     if (!(err instanceof z.ZodError)) {
-      console.log(err)
       res
         .status(Number(err.status) || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(errorResponse(err.message));
