@@ -11,6 +11,7 @@ export enum AuthResponseMessage {
   InvalidAccessToken = "Invalid token",
   NoAccess = "You have no access",
   InvalidCurrentPassword = "Current password is invalid",
+  UserNotFound = "User not found",
 
   // Success messages
   OTPResent = "OTP resent",

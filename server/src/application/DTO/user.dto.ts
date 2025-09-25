@@ -14,3 +14,10 @@ export const CompleteRegistrationSchema = z.object({
 });
 
 export type CompleteRegistrationDTO = z.infer<typeof CompleteRegistrationSchema>;
+
+export const LoginSchema = z.object({
+  email: userValidationRules.Email,
+  password: userValidationRules.Password,
+});
+
+export type LoginDTO = z.infer<typeof LoginSchema>;

@@ -9,4 +9,6 @@ authRouter.post("/OTP/resend", otpController.resetOTP);
 authRouter.post("/register", authController.register);
 authRouter.post("/register/complete", authController.completeRegistration);
 
+authRouter.post("/login", authController.login);
+
 export default authRouter;
