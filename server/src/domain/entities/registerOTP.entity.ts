@@ -12,8 +12,9 @@ class RegisterOTPEntity extends OTPEntity {
     public readonly username: Username,
     public readonly password: Password,
     public readonly isVerified: boolean,
+    public readonly expiresAt: Date,
   ) {
-    super(id, OTP, email, isVerified);
+    super(id, OTP, email, isVerified, expiresAt);
   }
 }
 

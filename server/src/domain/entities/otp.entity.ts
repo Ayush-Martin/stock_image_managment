@@ -7,7 +7,12 @@ class OTPEntity {
     public readonly OTP: OTP,
     public readonly email: Email,
     public readonly isVerified: boolean,
+    public readonly expiresAt: Date,
   ) {}
+
+  public isExpired(): boolean {
+    return this.expiresAt.getTime() <= Date.now();
+  }
 }
 
 export default OTPEntity;

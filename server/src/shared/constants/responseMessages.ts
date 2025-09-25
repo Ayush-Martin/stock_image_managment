@@ -1,6 +1,7 @@
 export enum AuthResponseMessage {
   // Error messages
   EmailExists = "User with email already exists",
+  OtpNotFound = "OTP is generated cannot reset",
   OtpExpired = "OTP is expired",
   InvalidOtp = "Invalid OTP",
   OtpNotVerified = "OTP is not verified",

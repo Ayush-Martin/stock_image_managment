@@ -5,7 +5,13 @@ import { IOTPDocument } from "../DB/Mongodb/models/otp.model";
 
 class OTPMapper {
   static toEntity(doc: IOTPDocument) {
-    return new OTPEntity(doc.id, new OTP(doc.OTP), new Email(doc.email), doc.isVerified);
+    return new OTPEntity(
+      doc.id,
+      new OTP(doc.OTP),
+      new Email(doc.email),
+      doc.isVerified,
+      doc.expiresAt,
+    );
   }
 
   static toDocument(entity: OTPEntity) {
@@ -14,6 +20,7 @@ class OTPMapper {
       OTP: entity.OTP.value,
       email: entity.email.value,
       isVerified: entity.isVerified,
+      expiresAt: entity.expiresAt,
     };
   }
 }

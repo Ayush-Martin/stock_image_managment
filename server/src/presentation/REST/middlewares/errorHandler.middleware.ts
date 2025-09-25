@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import z from "zod";
 import { StatusCodes } from "../../../shared/constants/statusCodes";
 import { IAppError } from "../../../shared/types/appError.type";
@@ -12,8 +12,9 @@ class ErrorHandlerMiddleware {
     binder(this);
   }
 
-  public handle(err: IAppError | z.ZodError, req: Request, res: Response) {
+  public handle(err: IAppError | z.ZodError, req: Request, res: Response, _next: NextFunction) {
     if (!(err instanceof z.ZodError)) {
+      console.log(err)
       res
         .status(Number(err.status) || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(errorResponse(err.message));

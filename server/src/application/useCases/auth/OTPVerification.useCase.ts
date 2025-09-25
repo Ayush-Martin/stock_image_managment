@@ -14,7 +14,7 @@ class OTPVerificationUseCase implements IOTPVerificationUseCase {
   public async execute(verifyOtpDTO: VerifyOtpDTO): Promise<void> {
     const storedOTP = await this._OTPRepository.getOTPByEmail(verifyOtpDTO.email);
 
-    if (!storedOTP) {
+    if (!storedOTP || storedOTP.isExpired()) {
       throw errorCreator(AuthResponseMessage.OtpExpired, StatusCodes.GONE);
     }
 

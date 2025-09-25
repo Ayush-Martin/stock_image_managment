@@ -6,6 +6,7 @@ export interface IOTPDocument extends Document {
   isVerified: boolean;
   username?: string;
   password?: string;
+  expiresAt: Date;
 }
 
 const OTPSchema = new Schema<IOTPDocument>(
@@ -15,10 +16,9 @@ const OTPSchema = new Schema<IOTPDocument>(
     OTP: { type: String, required: true },
     username: { type: String, required: false },
     password: { type: String, required: false },
+    expiresAt: { type: Date, required: true },
   },
   { timestamps: true },
 );
-
-OTPSchema.index({ expires: 1 }, { expireAfterSeconds: 0 });
 
 export default model<IOTPDocument>("OTP", OTPSchema);

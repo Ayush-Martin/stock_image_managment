@@ -14,3 +14,9 @@ export const verifyOTPSchema = z.object({
 });
 
 export type VerifyOtpDTO = z.infer<typeof verifyOTPSchema>;
+
+export const ResetOTPSchema = z.object({
+  email: userValidationRules.Email,
+});
+
+export type ResetOtpDTO = z.infer<typeof ResetOTPSchema>;

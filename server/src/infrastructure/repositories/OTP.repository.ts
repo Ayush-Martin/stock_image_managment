@@ -3,6 +3,7 @@ import { IOTPRepository } from "../../application/interface/repositories/IOTP.re
 import OTPEntity from "../../domain/entities/otp.entity";
 import { Model } from "mongoose";
 import { IOTPDocument } from "../DB/Mongodb/models/otp.model";
+import OTPMapper from "../mappers/OTP.mapper";
 
 @injectable()
 class OTPRepository implements IOTPRepository {
@@ -15,11 +16,21 @@ class OTPRepository implements IOTPRepository {
   public async getOTPByEmail(email: string): Promise<OTPEntity | null> {
     const data = await this._OTPModel.findOne({ email });
     if (!data) return null;
-    return new OTPEntity(data.id, { value: data.OTP }, { value: data.email }, data.isVerified);
+    return OTPMapper.toEntity(data);
   }
 
   public async verifyOTP(email: string): Promise<void> {
     await this._OTPModel.updateOne({ email }, { isVerified: true });
+  }
+
+  public async updateOTP(email: string, otp: string, expiresAt: Date): Promise<OTPEntity | null> {
+    const data = await this._OTPModel.findOneAndUpdate(
+      { email: email },
+      { OTP: otp, expiresAt },
+      { new: true },
+    );
+    if (!data) return null;
+    return OTPMapper.toEntity(data);
   }
 }
 

@@ -27,11 +27,13 @@ import EmailService from "../services/email.service";
 import { IRegisterUseCase } from "../../application/interface/useCases/auth/IRegister.useCase";
 import { IOTPVerificationUseCase } from "../../application/interface/useCases/auth/IOTPVerification.useCase";
 import { ICompleteRegistrationUseCase } from "../../application/interface/useCases/auth/ICompleteRegistration.useCase";
+import { IResetOTPUseCase } from "../../application/interface/useCases/auth/IResetOTP.useCase";
 
 //UseCase Implementations
 import RegisterUseCase from "../../application/useCases/auth/register.useCase";
 import OTPVerificationUseCase from "../../application/useCases/auth/OTPVerification.useCase";
 import CompleteRegistrationUseCase from "../../application/useCases/auth/completeRegistration.useCase";
+import ResetOTPUseCase from "../../application/useCases/auth/resetOTP.useCase";
 
 //Controller Implementations
 import AuthController from "../../presentation/REST/controllers/auth.controller";
@@ -73,6 +75,8 @@ container.bind<IEmailService>(TYPES.IEmailService).to(EmailService);
 container.bind<IRegisterUseCase>(TYPES.IRegisterUseCase).to(RegisterUseCase);
 
 container.bind<IOTPVerificationUseCase>(TYPES.IOTPVerificationUseCase).to(OTPVerificationUseCase);
+
+container.bind<IResetOTPUseCase>(TYPES.IResetOTPUseCase).to(ResetOTPUseCase);
 
 container
   .bind<ICompleteRegistrationUseCase>(TYPES.ICompleteRegistrationUseCase)

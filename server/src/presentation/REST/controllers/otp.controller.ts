@@ -8,12 +8,15 @@ import { StatusCodes } from "../../../shared/constants/statusCodes";
 import { successResponse } from "../../../shared/utils/responseCreator";
 import { AuthResponseMessage } from "../../../shared/constants/responseMessages";
 import { binder } from "../../../shared/utils/binder";
+import { IResetOTPUseCase } from "../../../application/interface/useCases/auth/IResetOTP.useCase";
+import { RegisterUserSchema } from "../../../application/DTO/user.dto";
 
 @injectable()
 class OTPController {
   constructor(
     @inject(TYPES.IOTPVerificationUseCase)
     private readonly _otpVerificationUseCase: IOTPVerificationUseCase,
+    @inject(TYPES.IResetOTPUseCase) private _resetOTPUseCase: IResetOTPUseCase,
   ) {
     binder(this);
   }
@@ -25,6 +28,18 @@ class OTPController {
       await this._otpVerificationUseCase.execute(verifyOtpDTO);
 
       res.status(StatusCodes.OK).json(successResponse(AuthResponseMessage.OtpVerified));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public async resetOTP(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const resetOtpDTO = RegisterUserSchema.parse(req.body);
+
+      await this._resetOTPUseCase.execute(resetOtpDTO);
+
+      res.status(StatusCodes.CREATED).json(successResponse(AuthResponseMessage.OTPResent));
     } catch (err) {
       next(err);
     }

@@ -37,6 +37,8 @@ class RegisterUseCase implements IRegisterUseCase {
 
     const hashedPassword = await this.hashingService.hash(password);
 
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+
     const registerOTPEntity = new RegisterOTPEntity(
       "",
       new OTP(generateOTP()),
@@ -44,6 +46,7 @@ class RegisterUseCase implements IRegisterUseCase {
       new Username(username),
       new Password(hashedPassword),
       false,
+      expiresAt,
     );
 
     await this.registerOTPRepository.createOTP(registerOTPEntity);

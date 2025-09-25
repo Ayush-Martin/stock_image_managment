@@ -14,6 +14,7 @@ class RegisterOTPMapper {
       new Username(doc.username || ""),
       new Password(doc.password || ""),
       doc.isVerified,
+      doc.expiresAt,
     );
   }
 
@@ -24,6 +25,7 @@ class RegisterOTPMapper {
       username: entity.username.value,
       password: entity.password.value,
       isVerified: entity.isVerified,
+      expiresAt: entity.expiresAt,
     };
   }
 }

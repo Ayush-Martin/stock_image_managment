@@ -4,6 +4,7 @@ import { authController, otpController } from "../../../../infrastructure/contai
 const authRouter = Router();
 
 authRouter.post("/OTP/verify", otpController.verifyOTP);
+authRouter.post("/OTP/resend", otpController.resetOTP);
 
 authRouter.post("/register", authController.register);
 authRouter.post("/register/complete", authController.completeRegistration);

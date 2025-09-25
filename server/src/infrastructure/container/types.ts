@@ -11,6 +11,8 @@ export const TYPES = {
   //UseCases
   IRegisterUseCase: Symbol.for("IRegisterUseCase"),
   IOTPVerificationUseCase: Symbol.for("IOTPVerificationUseCase"),
+  IResetOTPUseCase: Symbol.for("IResetOTPUseCase"),
+
   ICompleteRegistrationUseCase: Symbol.for("ICompleteRegistrationUseCase"),
 
   //Controllers
