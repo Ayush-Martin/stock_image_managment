@@ -15,6 +15,7 @@ export const TYPES = {
   IOTPVerificationUseCase: Symbol.for("IOTPVerificationUseCase"),
   IResetOTPUseCase: Symbol.for("IResetOTPUseCase"),
   ILoginUseCase: Symbol.for("ILoginUseCase"),
+  IRefreshUseCase: Symbol.for("IRefreshUseCase"),
 
   ICompleteRegistrationUseCase: Symbol.for("ICompleteRegistrationUseCase"),
 
@@ -24,4 +25,5 @@ export const TYPES = {
 
   //Middlewares
   IErrorHandlerMiddleware: Symbol.for("IErrorHandlerMiddleware"),
+  IAuthMiddleware: Symbol.for("IAuthMiddleware"),
 } as const;

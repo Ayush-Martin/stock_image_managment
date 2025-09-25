@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { authController, otpController } from "../../../../infrastructure/container/DI";
+import {
+  authController,
+  authMiddleware,
+  otpController,
+} from "../../../../infrastructure/container/DI";
 
 const authRouter = Router();
 
@@ -8,6 +12,8 @@ authRouter.post("/OTP/resend", otpController.resetOTP);
 
 authRouter.post("/register", authController.register);
 authRouter.post("/register/complete", authController.completeRegistration);
+
+authRouter.post("/refresh", authMiddleware.refreshTokenValidator, authController.refresh);
 
 authRouter.post("/login", authController.login);
 

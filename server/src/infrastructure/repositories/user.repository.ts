@@ -22,6 +22,12 @@ class UserRepository implements IUserRepository {
     if (!user) return null;
     return UserMapper.toEntity(user);
   }
+
+  public async getUserById(id: string): Promise<UserEntity | null> {
+    const user = await this._User.findById(id);
+    if (!user) return null;
+    return UserMapper.toEntity(user);
+  }
 }
 
 export default UserRepository;

@@ -12,6 +12,7 @@ class JWTService implements IJWTService {
     return sign(
       {
         sub: useEntity.id,
+        id: useEntity.id,
         username: useEntity.username.value,
         email: useEntity.email.value,
       },
@@ -23,6 +24,7 @@ class JWTService implements IJWTService {
     return sign(
       {
         sub: useEntity.id,
+        id: useEntity.id,
         email: useEntity.email.value,
       },
       envConfig.REFRESH_TOKEN_SECRET,

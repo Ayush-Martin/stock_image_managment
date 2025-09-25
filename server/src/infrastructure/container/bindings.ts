@@ -34,6 +34,7 @@ import { IOTPVerificationUseCase } from "../../application/interface/useCases/au
 import { ICompleteRegistrationUseCase } from "../../application/interface/useCases/auth/ICompleteRegistration.useCase";
 import { IResetOTPUseCase } from "../../application/interface/useCases/auth/IResetOTP.useCase";
 import { ILoginUseCase } from "../../application/interface/useCases/auth/ILogin.useCase";
+import { IRefreshUseCase } from "../../application/interface/useCases/auth/IRefresh.useCase";
 
 //UseCase Implementations
 import RegisterUseCase from "../../application/useCases/auth/register.useCase";
@@ -41,6 +42,7 @@ import OTPVerificationUseCase from "../../application/useCases/auth/OTPVerificat
 import CompleteRegistrationUseCase from "../../application/useCases/auth/completeRegistration.useCase";
 import ResetOTPUseCase from "../../application/useCases/auth/resetOTP.useCase";
 import LoginUseCase from "../../application/useCases/auth/login.useCase";
+import RefreshUseCase from "../../application/useCases/auth/refresh.useCase";
 
 //Controller Implementations
 import AuthController from "../../presentation/REST/controllers/auth.controller";
@@ -48,6 +50,7 @@ import OTPController from "../../presentation/REST/controllers/otp.controller";
 
 //Middleware Implementations
 import ErrorHandlerMiddleware from "../../presentation/REST/middlewares/errorHandler.middleware";
+import AuthMiddleware from "../../presentation/REST/middlewares/auth.middleware";
 
 const container = new Container();
 
@@ -100,11 +103,15 @@ container
 
 container.bind<ILoginUseCase>(TYPES.ILoginUseCase).to(LoginUseCase);
 
+container.bind<IRefreshUseCase>(TYPES.IRefreshUseCase).to(RefreshUseCase);
+
 //----- Controllers ------
 container.bind<AuthController>(TYPES.AuthController).to(AuthController);
 container.bind<OTPController>(TYPES.OTPController).to(OTPController);
 
 //----- Middlewares ------
 container.bind<ErrorHandlerMiddleware>(TYPES.IErrorHandlerMiddleware).to(ErrorHandlerMiddleware);
+
+container.bind<AuthMiddleware>(TYPES.IAuthMiddleware).to(AuthMiddleware);
 
 export default container;

@@ -16,6 +16,7 @@ import { ICompleteRegistrationUseCase } from "../../../application/interface/use
 import { ILoginUseCase } from "../../../application/interface/useCases/auth/ILogin.useCase";
 import { RefreshTokenCookieOptions } from "../../../shared/configs/cookie";
 import { REFRESH_TOKEN_COOKIE_NAME } from "../../../shared/constants/general";
+import { IRefreshUseCase } from "../../../application/interface/useCases/auth/IRefresh.useCase";
 
 @injectable()
 class AuthController {
@@ -25,6 +26,7 @@ class AuthController {
     @inject(TYPES.ICompleteRegistrationUseCase)
     private _completeRegistrationUseCase: ICompleteRegistrationUseCase,
     @inject(TYPES.ILoginUseCase) private _loginUseCase: ILoginUseCase,
+    @inject(TYPES.IRefreshUseCase) private _refreshUseCase: IRefreshUseCase,
   ) {
     binder(this);
   }
@@ -66,7 +68,22 @@ class AuthController {
       res
         .cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken, RefreshTokenCookieOptions)
         .status(StatusCodes.OK)
-        .json({ accessToken });
+        .json(successResponse(AuthResponseMessage.UserLoggedIn, accessToken));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  public async refresh(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const userId = req.userId!;
+
+      const { accessToken, refreshToken } = await this._refreshUseCase.execute(userId);
+
+      res
+        .cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken, RefreshTokenCookieOptions)
+        .status(StatusCodes.OK)
+        .json(successResponse(AuthResponseMessage.TokenRefreshed, accessToken));
     } catch (err) {
       next(err);
     }
