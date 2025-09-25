@@ -32,6 +32,12 @@ class OTPRepository implements IOTPRepository {
     if (!data) return null;
     return OTPMapper.toEntity(data);
   }
+
+  public async createOTP(entity: OTPEntity): Promise<OTPEntity> {
+    const doc = new this._OTPModel(OTPMapper.toDocument(entity));
+    await doc.save();
+    return OTPMapper.toEntity(doc);
+  }
 }
 
 export default OTPRepository;

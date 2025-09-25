@@ -28,6 +28,10 @@ class UserRepository implements IUserRepository {
     if (!user) return null;
     return UserMapper.toEntity(user);
   }
+
+  public async updatePassword(id: string, password: string): Promise<void> {
+    await this._User.updateOne({ _id: id }, { password });
+  }
 }
 
 export default UserRepository;

@@ -35,6 +35,9 @@ import { ICompleteRegistrationUseCase } from "../../application/interface/useCas
 import { IResetOTPUseCase } from "../../application/interface/useCases/auth/IResetOTP.useCase";
 import { ILoginUseCase } from "../../application/interface/useCases/auth/ILogin.useCase";
 import { IRefreshUseCase } from "../../application/interface/useCases/auth/IRefresh.useCase";
+import { IForgetPasswordUseCase } from "../../application/interface/useCases/auth/IForgetPassword.useCase";
+import { IResetPasswordUseCase } from "../../application/interface/useCases/auth/IResetPassword.useCase";
+import { IChangePasswordUseCase } from "../../application/interface/useCases/auth/IChangePassword.useChase";
 
 //UseCase Implementations
 import RegisterUseCase from "../../application/useCases/auth/register.useCase";
@@ -43,6 +46,9 @@ import CompleteRegistrationUseCase from "../../application/useCases/auth/complet
 import ResetOTPUseCase from "../../application/useCases/auth/resetOTP.useCase";
 import LoginUseCase from "../../application/useCases/auth/login.useCase";
 import RefreshUseCase from "../../application/useCases/auth/refresh.useCase";
+import ForgetPasswordUseCase from "../../application/useCases/auth/forgetPassword.useCase";
+import ResetPasswordUseCase from "../../application/useCases/auth/resetPassword.useCase";
+import ChangePasswordUseCase from "../../application/useCases/auth/changePassword.useCase";
 
 //Controller Implementations
 import AuthController from "../../presentation/REST/controllers/auth.controller";
@@ -104,6 +110,12 @@ container
 container.bind<ILoginUseCase>(TYPES.ILoginUseCase).to(LoginUseCase);
 
 container.bind<IRefreshUseCase>(TYPES.IRefreshUseCase).to(RefreshUseCase);
+
+container.bind<IForgetPasswordUseCase>(TYPES.IForgetPasswordUseCase).to(ForgetPasswordUseCase);
+
+container.bind<IResetPasswordUseCase>(TYPES.IResetPasswordUseCase).to(ResetPasswordUseCase);
+
+container.bind<IChangePasswordUseCase>(TYPES.IChangePasswordUseCase).to(ChangePasswordUseCase);
 
 //----- Controllers ------
 container.bind<AuthController>(TYPES.AuthController).to(AuthController);

@@ -16,8 +16,10 @@ export const TYPES = {
   IResetOTPUseCase: Symbol.for("IResetOTPUseCase"),
   ILoginUseCase: Symbol.for("ILoginUseCase"),
   IRefreshUseCase: Symbol.for("IRefreshUseCase"),
-
+  IForgetPasswordUseCase: Symbol.for("IForgotPasswordUseCase"),
+  IResetPasswordUseCase: Symbol.for("IResetPasswordUseCase"),
   ICompleteRegistrationUseCase: Symbol.for("ICompleteRegistrationUseCase"),
+  IChangePasswordUseCase: Symbol.for("IChangePasswordUseCase"),
 
   //Controllers
   AuthController: Symbol.for("AuthController"),

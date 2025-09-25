@@ -4,4 +4,5 @@ export interface IUserRepository {
   createUser(user: UserEntity): Promise<UserEntity>;
   getUserByEmail(email: string): Promise<UserEntity | null>;
   getUserById(id: string): Promise<UserEntity | null>;
+  updatePassword(id: string, password: string): Promise<void>;
 }

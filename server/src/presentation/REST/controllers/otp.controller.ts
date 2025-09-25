@@ -3,13 +3,12 @@ import { injectable } from "inversify";
 import { TYPES } from "../../../infrastructure/container/types";
 import { IOTPVerificationUseCase } from "../../../application/interface/useCases/auth/IOTPVerification.useCase";
 import { NextFunction, Request, Response } from "express";
-import { verifyOTPSchema } from "../../../application/DTO/otp.dto";
+import { ResetOTPSchema, verifyOTPSchema } from "../../../application/DTO/otp.dto";
 import { StatusCodes } from "../../../shared/constants/statusCodes";
 import { successResponse } from "../../../shared/utils/responseCreator";
 import { AuthResponseMessage } from "../../../shared/constants/responseMessages";
 import { binder } from "../../../shared/utils/binder";
 import { IResetOTPUseCase } from "../../../application/interface/useCases/auth/IResetOTP.useCase";
-import { RegisterUserSchema } from "../../../application/DTO/user.dto";
 
 @injectable()
 class OTPController {
@@ -35,7 +34,7 @@ class OTPController {
 
   public async resetOTP(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const resetOtpDTO = RegisterUserSchema.parse(req.body);
+      const resetOtpDTO = ResetOTPSchema.parse(req.body);
 
       await this._resetOTPUseCase.execute(resetOtpDTO);
 
