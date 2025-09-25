@@ -1,11 +1,20 @@
-import { Button } from "./components/ui/button";
+import { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import { AuthRouter } from "./router";
 
 const App = () => {
   return (
-    <div className="bg-app-bg">
-      App
-      <Button>Hello</Button>
-    </div>
+    <main className="">
+      <Suspense>
+        <Routes>
+          <Route path="/auth/*">
+            {AuthRouter.map(({ Component, path }) => (
+              <Route key={path} path={path} element={<Component />}></Route>
+            ))}
+          </Route>
+        </Routes>
+      </Suspense>
+    </main>
   );
 };
 
