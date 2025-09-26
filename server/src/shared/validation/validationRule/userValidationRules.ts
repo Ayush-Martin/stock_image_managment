@@ -6,7 +6,7 @@ import {
 } from "../generalValidationMessage";
 
 const userValidationRules = {
-  Email: z.email("Invalid email"),
+  Email: z.string().email("Invalid email"),
   Password: z
     .string()
     .min(8, getMinLengthMessage("Password", 8))
