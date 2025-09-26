@@ -1,8 +1,7 @@
-// import { lazy } from "react";
-
 //Auth Routes
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import ForgotPasswordPage from "./pages/ForgetPasswordPage";
+import HomePage from "./pages/HomePage";
 import LoginRegisterPage from "./pages/LoginRegisterPage";
 import OTPVerificationPage from "./pages/OTPVerificationPage";
 import ResetPasswordPage from "./pages/ResetPasswrodPage";
@@ -30,6 +29,13 @@ export const AuthRouter: Routes = [
   {
     path: "resetPassword",
     Component: ResetPasswordPage,
+  },
+];
+
+export const UserRouter: Routes = [
+  {
+    path: "",
+    Component: HomePage,
   },
   {
     path: "changePassword",

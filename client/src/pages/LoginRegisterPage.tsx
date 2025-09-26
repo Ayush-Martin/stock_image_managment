@@ -23,7 +23,6 @@ const LoginRegisterPage = () => {
     if (!data) return;
     dispatch(login(data));
     navigate(from, { replace: true });
-    dispatch(login({ email, password }));
   };
 
   const handleRegister = async (

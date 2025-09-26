@@ -21,7 +21,7 @@ const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       const { username, email, id }: IUser = jwtDecode(action.payload);
-
+      console.log(action.payload, username, email, id);
       state.username = username;
       state.email = email;
       state.id = id;
