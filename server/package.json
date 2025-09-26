@@ -27,7 +27,7 @@
     "nocache": "^4.0.0",
     "nodemailer": "^7.0.6",
     "reflect-metadata": "^0.2.2",
-    "zod": "^4.1.11"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
