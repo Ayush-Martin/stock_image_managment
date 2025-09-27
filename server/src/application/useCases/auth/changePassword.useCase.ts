@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { IChangePasswordUseCase } from "../../interface/useCases/auth/IChangePassword.useChase";
+import { IChangePasswordUseCase } from "../../interface/useCases/auth/IChangePassword.useCase";
 import { inject } from "inversify";
 import { IUserRepository } from "../../interface/repositories/IUser.repository";
 import { TYPES } from "../../../infrastructure/container/types";
