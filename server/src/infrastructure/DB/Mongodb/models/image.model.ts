@@ -12,7 +12,7 @@ const ImageSchema = new Schema<IImageDocument>(
     userId: { type: mongoose.Types.ObjectId, required: true, ref: "user" },
     url: { type: String, required: true },
     title: { type: String, required: true },
-    order: { type: Number, required: true, unique: true },
+    order: { type: Number, required: true },
   },
   { timestamps: true },
 );

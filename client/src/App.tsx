@@ -45,13 +45,13 @@ const App = () => {
     <main>
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
-          <Route path="/auth/*" element={<RoutesHandler requiredRole="auth" />}>
-            {AuthRouter.map(({ Component, path }) => (
+          <Route path="/*" element={<RoutesHandler requiredRole="user" />}>
+            {UserRouter.map(({ Component, path }) => (
               <Route key={path} path={path} element={<Component />} />
             ))}
           </Route>
-          <Route path="/*" element={<RoutesHandler requiredRole="user" />}>
-            {UserRouter.map(({ Component, path }) => (
+          <Route path="/auth/*" element={<RoutesHandler requiredRole="auth" />}>
+            {AuthRouter.map(({ Component, path }) => (
               <Route key={path} path={path} element={<Component />} />
             ))}
           </Route>

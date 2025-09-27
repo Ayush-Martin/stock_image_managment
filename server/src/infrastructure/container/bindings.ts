@@ -150,7 +150,7 @@ container.bind<IRearrangeImageUseCase>(TYPES.IRearrangeImageUseCase).to(Rearrang
 
 container.bind<IDeleteImageUseCase>(TYPES.IDeleteImageUseCase).to(DeleteImageUseCase);
 
-container.bind<IGetImagesUseCase>(TYPES.IGetImagesUseCase).to(GetImagesUseCase);
+container.bind<IGetImagesUseCase>(TYPES.IGEtImagesUseCase).to(GetImagesUseCase);
 
 //----- Controllers ------
 container.bind<AuthController>(TYPES.AuthController).to(AuthController);

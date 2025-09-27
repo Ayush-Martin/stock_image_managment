@@ -9,6 +9,7 @@ userRouter.use(authMiddleware.accessTokenValidator);
 userRouter
   .route("/images")
   .get(imageController.getImages)
+  .put(imageController.rearrangeImage)
   .post(upload.array("images"), imageController.uploadImages);
 
 userRouter
