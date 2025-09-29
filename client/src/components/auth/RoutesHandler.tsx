@@ -12,7 +12,6 @@ interface IRoutesHandlerProps {
 const RoutesHandler: FC<IRoutesHandlerProps> = ({ requiredRole }) => {
   const { accessToken } = useSelector((state: RootReducer) => state.user);
   const location = useLocation();
-  console.log("dfdfd");
   console.log(accessToken);
 
   // If logged in and trying to access /auth, redirect to home
@@ -34,6 +33,7 @@ const RoutesHandler: FC<IRoutesHandlerProps> = ({ requiredRole }) => {
       errorPopup("You must login.");
       return <Navigate to="/auth" state={{ from: location }} replace />;
     }
+    console.log("keieie");
     return <Outlet />;
   }
 

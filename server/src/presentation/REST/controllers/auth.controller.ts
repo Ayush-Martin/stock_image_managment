@@ -20,7 +20,7 @@ import { RefreshTokenCookieOptions } from "../../../shared/configs/cookie";
 import { REFRESH_TOKEN_COOKIE_NAME } from "../../../shared/constants/general";
 import { IRefreshUseCase } from "../../../application/interface/useCases/auth/IRefresh.useCase";
 import { IResetPasswordUseCase } from "../../../application/interface/useCases/auth/IResetPassword.useCase";
-import { IChangePasswordUseCase } from "../../../application/interface/useCases/auth/IChangePassword.useChase";
+import { IChangePasswordUseCase } from "../../../application/interface/useCases/auth/IChangePassword.useCase";
 import { IForgetPasswordUseCase } from "../../../application/interface/useCases/auth/IForgetPassword.useCase";
 
 @injectable()

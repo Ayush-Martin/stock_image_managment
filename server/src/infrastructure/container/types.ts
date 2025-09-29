@@ -4,6 +4,7 @@ export const TYPES = {
   IOTPRepository: Symbol.for("IOTPRepository"),
   IRegisterOTPRepository: Symbol.for("IRegisterOTPRepository"),
   IRefreshTokenRepository: Symbol.for("IRefreshTokenRepository"),
+  IImageRepository: Symbol.for("IImageRepository"),
 
   //Services
   IHashingService: Symbol.for("IHashingService"),
@@ -20,10 +21,17 @@ export const TYPES = {
   IResetPasswordUseCase: Symbol.for("IResetPasswordUseCase"),
   ICompleteRegistrationUseCase: Symbol.for("ICompleteRegistrationUseCase"),
   IChangePasswordUseCase: Symbol.for("IChangePasswordUseCase"),
+  IUploadImagesUseCase: Symbol.for("IUploadImagesUseCase"),
+  IEditImageUseCase: Symbol.for("IEditImageUseCase"),
+  IEditImageTitleUseCase: Symbol.for("IEditImageTitleUseCase"),
+  IRearrangeImageUseCase: Symbol.for("IRearrangeImageUseCase"),
+  IDeleteImageUseCase: Symbol.for("IDeleteImageUseCase"),
+  IGEtImagesUseCase: Symbol.for("IGetImagesUseCase"),
 
   //Controllers
   AuthController: Symbol.for("AuthController"),
   OTPController: Symbol.for("OTPController"),
+  ImageController: Symbol.for("ImageController"),
 
   //Middlewares
   IErrorHandlerMiddleware: Symbol.for("IErrorHandlerMiddleware"),

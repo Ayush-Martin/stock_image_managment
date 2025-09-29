@@ -5,18 +5,21 @@ import { TYPES } from "./types";
 import UserModel from "../DB/Mongodb/models/user.model";
 import OTPModel from "../DB/Mongodb/models/otp.model";
 import RefreshTokenModel from "../DB/Mongodb/models/refreshToken.model";
+import ImageModel from "../DB/Mongodb/models/image.model";
 
 //Repository Interfaces
 import { IUserRepository } from "../../application/interface/repositories/IUser.repository";
 import { IOTPRepository } from "../../application/interface/repositories/IOTP.repository";
 import { IRegisterOTPRepository } from "../../application/interface/repositories/IRegisterOTP.repository";
 import { IRefreshTokenRepository } from "../../application/interface/repositories/IRefreshToken.repository";
+import { IImageRepository } from "../../application/interface/repositories/IImage.repository";
 
 //Repository Implementations
 import UserRepository from "../repositories/user.repository";
 import OTPRepository from "../repositories/OTP.repository";
 import RegisterOTPRepository from "../repositories/registerOTP.repository";
 import RefreshTokenRepository from "../repositories/refreshToken.repository";
+import ImageRepository from "../repositories/image.repository";
 
 //Service Interfaces
 import { IHashingService } from "../../application/interface/services/IHashing.service";
@@ -37,7 +40,13 @@ import { ILoginUseCase } from "../../application/interface/useCases/auth/ILogin.
 import { IRefreshUseCase } from "../../application/interface/useCases/auth/IRefresh.useCase";
 import { IForgetPasswordUseCase } from "../../application/interface/useCases/auth/IForgetPassword.useCase";
 import { IResetPasswordUseCase } from "../../application/interface/useCases/auth/IResetPassword.useCase";
-import { IChangePasswordUseCase } from "../../application/interface/useCases/auth/IChangePassword.useChase";
+import { IChangePasswordUseCase } from "../../application/interface/useCases/auth/IChangePassword.useCase";
+import { IUploadImagesUseCase } from "../../application/interface/useCases/image/IUploadImages.useCase";
+import { IEditImageTitleUseCase } from "../../application/interface/useCases/image/IEditImageTitle.useCase";
+import { IEditImageUseCase } from "../../application/interface/useCases/image/IEditImage.useCase";
+import { IRearrangeImageUseCase } from "../../application/interface/useCases/image/IRearrangeImage.useCase";
+import { IDeleteImageUseCase } from "../../application/interface/useCases/image/IDeleteImage.useCase";
+import { IGetImagesUseCase } from "../../application/interface/useCases/image/IGetImages.useCase";
 
 //UseCase Implementations
 import RegisterUseCase from "../../application/useCases/auth/register.useCase";
@@ -49,10 +58,17 @@ import RefreshUseCase from "../../application/useCases/auth/refresh.useCase";
 import ForgetPasswordUseCase from "../../application/useCases/auth/forgetPassword.useCase";
 import ResetPasswordUseCase from "../../application/useCases/auth/resetPassword.useCase";
 import ChangePasswordUseCase from "../../application/useCases/auth/changePassword.useCase";
+import UploadImageUseCase from "../../application/useCases/image/uploadImages.useCase";
+import EditImageTitleUseCase from "../../application/useCases/image/editImageTitle.useCase";
+import EditImageUseCase from "../../application/useCases/image/editImage.useCase";
+import RearrangeImageUseCase from "../../application/useCases/image/rearrangeImage.useCase";
+import DeleteImageUseCase from "../../application/useCases/image/deleteImage.useCase";
+import GetImagesUseCase from "../../application/useCases/image/getImages.useCase";
 
 //Controller Implementations
 import AuthController from "../../presentation/REST/controllers/auth.controller";
 import OTPController from "../../presentation/REST/controllers/otp.controller";
+import ImageController from "../../presentation/REST/controllers/image.controller";
 
 //Middleware Implementations
 import ErrorHandlerMiddleware from "../../presentation/REST/middlewares/errorHandler.middleware";
@@ -89,6 +105,13 @@ container
   })
   .inSingletonScope();
 
+container
+  .bind<IImageRepository>(TYPES.IImageRepository)
+  .toDynamicValue(() => {
+    return new ImageRepository(ImageModel);
+  })
+  .inSingletonScope();
+
 // ----- Services ------
 container.bind<IHashingService>(TYPES.IHashingService).to(HashingService);
 
@@ -117,9 +140,22 @@ container.bind<IResetPasswordUseCase>(TYPES.IResetPasswordUseCase).to(ResetPassw
 
 container.bind<IChangePasswordUseCase>(TYPES.IChangePasswordUseCase).to(ChangePasswordUseCase);
 
+container.bind<IUploadImagesUseCase>(TYPES.IUploadImagesUseCase).to(UploadImageUseCase);
+
+container.bind<IEditImageUseCase>(TYPES.IEditImageUseCase).to(EditImageUseCase);
+
+container.bind<IEditImageTitleUseCase>(TYPES.IEditImageTitleUseCase).to(EditImageTitleUseCase);
+
+container.bind<IRearrangeImageUseCase>(TYPES.IRearrangeImageUseCase).to(RearrangeImageUseCase);
+
+container.bind<IDeleteImageUseCase>(TYPES.IDeleteImageUseCase).to(DeleteImageUseCase);
+
+container.bind<IGetImagesUseCase>(TYPES.IGetImagesUseCase).to(GetImagesUseCase);
+
 //----- Controllers ------
 container.bind<AuthController>(TYPES.AuthController).to(AuthController);
 container.bind<OTPController>(TYPES.OTPController).to(OTPController);
+container.bind<ImageController>(TYPES.ImageController).to(ImageController);
 
 //----- Middlewares ------
 container.bind<ErrorHandlerMiddleware>(TYPES.IErrorHandlerMiddleware).to(ErrorHandlerMiddleware);

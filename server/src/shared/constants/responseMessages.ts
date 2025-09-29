@@ -24,3 +24,18 @@ export enum AuthResponseMessage {
   PasswordReset = "Password is updated",
   TokenRefreshed = "Token refreshed",
 }
+
+export enum ImageResponseMessage {
+  //Error messages
+  NoImagesUploaded = "No images uploaded",
+  ImageNotFound = "Image not found",
+
+  //Success messages
+  ImageUploaded = "Image uploaded successfully",
+  ImagesUploaded = "Images uploaded successfully",
+  ImageTitleUpdated = "Image title updated successfully",
+  ImageUpdated = "Image updated successfully",
+  ImageDeleted = "Image deleted successfully",
+  ImageRearranged = "Image rearranged successfully",
+  ImagesFetched = "Images fetched successfully",
+}
