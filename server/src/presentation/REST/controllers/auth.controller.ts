@@ -133,6 +133,17 @@ class AuthController {
       next(err);
     }
   }
+
+  public async logout(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      res
+        .clearCookie(REFRESH_TOKEN_COOKIE_NAME, RefreshTokenCookieOptions)
+        .status(StatusCodes.OK)
+        .json(successResponse(AuthResponseMessage.UserLoggedOut));
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default AuthController;
