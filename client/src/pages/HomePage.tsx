@@ -16,6 +16,10 @@ import { Plus, Key, LogOut } from "lucide-react";
 import useImage from "@/hooks/useImage";
 import Image from "@/components/Image";
 import ImageModal from "@/components/ImageModal";
+import { useNavigate } from "react-router-dom";
+import { logout } from "@/features/auth/slice/userSlice";
+import { axiosGetRequest } from "@/config/axios";
+import { useDispatch } from "react-redux";
 
 type ImageItem = {
   id: string;
@@ -38,6 +42,9 @@ const HomePage: React.FC = () => {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
 
@@ -70,6 +77,12 @@ const HomePage: React.FC = () => {
     await deleteImage(id);
   };
 
+  const handleLogout = async () => {
+    await axiosGetRequest("/auth/logout");
+    dispatch(logout());
+    navigate("/auth");
+  };
+
   const sortedImages = [...images].sort((a, b) => a.order - b.order);
 
   return (
@@ -97,13 +110,19 @@ const HomePage: React.FC = () => {
           </label>
 
           {/* Change Password */}
-          <button className="flex items-center gap-2 bg-gray-800/70 hover:bg-gray-700/70 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition-all backdrop-blur-sm">
+          <button
+            className="flex items-center gap-2 bg-gray-800/70 hover:bg-gray-700/70 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition-all backdrop-blur-sm"
+            onClick={() => navigate("/changePassword")}
+          >
             <Key size={16} />
             <span className="hidden sm:inline">Change Password</span>
           </button>
 
           {/* Logout */}
-          <button className="flex items-center gap-2 bg-red-600/80 hover:bg-red-700/80 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition-all backdrop-blur-sm">
+          <button
+            className="flex items-center gap-2 bg-red-600/80 hover:bg-red-700/80 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition-all backdrop-blur-sm"
+            onClick={handleLogout}
+          >
             <LogOut size={16} />
             <span className="hidden sm:inline">Logout</span>
           </button>

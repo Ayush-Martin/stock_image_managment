@@ -16,6 +16,7 @@ authRouter.post("/register/complete", authController.completeRegistration);
 authRouter.get("/refresh", authMiddleware.refreshTokenValidator, authController.refresh);
 
 authRouter.post("/login", authController.login);
+authRouter.get("/logout", authController.logout);
 
 authRouter.post("/forgetPassword", authController.forgetPassword);
 authRouter.post("/resetPassword", authController.resetPassword);
