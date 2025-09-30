@@ -56,7 +56,7 @@ const OTPVerificationPage = () => {
     successPopup(res.message || "OTP verified");
 
     if (forAction === "register") {
-      const res = await axiosPostRequest(`/auth/register`, { email });
+      const res = await axiosPostRequest(`/auth/register/complete`, { email });
       if (!res) return;
       successPopup(res.message || "User registered");
       navigate("/auth");
