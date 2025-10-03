@@ -18,8 +18,8 @@ import Image from "@/components/Image";
 import ImageModal from "@/components/ImageModal";
 import { useNavigate } from "react-router-dom";
 import { logout } from "@/features/auth/slice/userSlice";
-import { axiosGetRequest } from "@/config/axios";
 import { useDispatch } from "react-redux";
+import { logoutApi } from "@/api/auth.api";
 
 type ImageItem = {
   id: string;
@@ -78,7 +78,8 @@ const HomePage: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    await axiosGetRequest("/auth/logout");
+    const res = await logoutApi();
+    if (!res) return;
     dispatch(logout());
     navigate("/auth");
   };

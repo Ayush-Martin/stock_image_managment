@@ -1,14 +1,14 @@
+import {
+  completeRegisterApi,
+  resendOTPApi,
+  verifyOTPApi,
+} from "@/api/auth.api";
 import { Button } from "@/components/ui/button";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import {
-  axiosPatchRequest,
-  axiosPostRequest,
-  axiosPutRequest,
-} from "@/config/axios";
 import { logout } from "@/features/auth/slice/userSlice";
 import { AppDispatch } from "@/store";
 import { successPopup } from "@/utils/popup";
@@ -49,16 +49,12 @@ const OTPVerificationPage = () => {
       return;
     }
 
-    const res = await axiosPatchRequest(
-      `/auth/OTP/verify?email=${email}&OTP=${value}`
-    );
+    const res = await verifyOTPApi(email, value);
     if (!res) return;
-    successPopup(res.message || "OTP verified");
 
     if (forAction === "register") {
-      const res = await axiosPostRequest(`/auth/register/complete`, { email });
+      const res = await completeRegisterApi(email);
       if (!res) return;
-      successPopup(res.message || "User registered");
       navigate("/auth");
     } else {
       navigate("/auth/resetPassword", { state: { email } });
@@ -67,9 +63,8 @@ const OTPVerificationPage = () => {
 
   const resendOTP = async () => {
     if (timer > 0) return;
-    const res = await axiosPutRequest(`/auth/OTP/resend`, { email });
+    const res = await resendOTPApi(email);
     if (!res) return;
-    successPopup(res.message || "OTP sent to your email");
     setTimer(20);
   };
 

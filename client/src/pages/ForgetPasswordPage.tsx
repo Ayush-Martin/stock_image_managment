@@ -1,8 +1,7 @@
+import { forgetPassword } from "@/api/auth.api";
 import ErrorText from "@/components/common/ErrorText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { axiosPostRequest } from "@/config/axios";
-import { successPopup } from "@/utils/popup";
 import { EmailValidationRule } from "@/utils/validationRules";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -31,11 +30,8 @@ const ForgotPasswordPage = () => {
   const navigate = useNavigate();
 
   const submit = async (data: ForgetPasswordSchemaType) => {
-    const res = await axiosPostRequest("/auth/forgetPassword", {
-      email: data.email,
-    });
+    const res = await forgetPassword(data.email);
     if (!res) return;
-    successPopup(res.message || "OTP sent to your email");
     navigate("/auth/otp", {
       state: {
         forAction: "resetPassword",

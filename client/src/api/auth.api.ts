@@ -2,10 +2,10 @@ import {
   axiosGetRequest,
   axiosPatchRequest,
   axiosPostRequest,
+  axiosPutRequest,
 } from "@/config/axios";
 import { BACKEND_BASE_URL } from "@/constants/API";
 import { successPopup } from "@/utils/popup";
-import { IChangePasswordSchema } from "@/validation/auth.validation";
 import axios from "axios";
 
 export const getRefresh = async () => {
@@ -17,9 +17,12 @@ export const getRefresh = async () => {
 };
 
 export const forgetPassword = async (email: string) => {
-  const res = await axiosPostRequest("/auth/forgetPassword", { email });
+  const res = await axiosPostRequest("/auth/forgetPassword", {
+    email,
+  });
   if (!res) return;
   successPopup(res.message || "OTP sent to your email");
+  return res;
 };
 
 export const loginWithPassword = async (
@@ -32,7 +35,7 @@ export const loginWithPassword = async (
   return res.data;
 };
 
-export const registerUser = async (
+export const registerApi = async (
   username: string,
   email: string,
   password: string
@@ -44,38 +47,58 @@ export const registerUser = async (
   });
   if (!res) return;
   successPopup(res.data || "OTP sent");
+  return res;
 };
 
-export const resetPassword = async (email: string, password: string) => {
+export const resetPasswordApi = async (email: string, password: string) => {
   const res = await axiosPostRequest("/auth/resetPassword", {
-    password,
+    password: password,
     email,
   });
   if (!res) return;
   successPopup(res.message || "Password is changed");
+  return res;
 };
 
-export const verifyOTP = async (email: string, OTP: string) => {
-  const res = await axiosPostRequest("/auth/verifyOTP", {
-    email,
-    OTP,
-  });
+export const verifyOTPApi = async (email: string, OTP: string) => {
+  const res = await axiosPatchRequest(
+    `/auth/OTP/verify?email=${email}&OTP=${OTP}`
+  );
   if (!res) return;
   successPopup(res.message || "OTP verified");
+  return res;
 };
 
-export const completeRegister = async (email: string) => {
-  const res = await axiosGetRequest(`/auth/register?email=${email}`);
+export const completeRegisterApi = async (email: string) => {
+  const res = await axiosPostRequest(`/auth/register/complete`, { email });
   if (!res) return;
-  successPopup(res.message || "user registered");
+  successPopup(res.message || "User registered");
+  return res;
 };
 
-export const changePassword = async (data: IChangePasswordSchema) => {
+export const changePassword = async (
+  oldPassword: string,
+  newPassword: string
+) => {
   const res = await axiosPatchRequest("/auth/changePassword", {
-    currentPassword: data.currentPassword,
-    newPassword: data.newPassword,
+    oldPassword: oldPassword,
+    newPassword: newPassword,
   });
   if (!res) return;
   successPopup(res.message || "Password is changed");
+  return res;
+};
+
+export const logoutApi = async () => {
+  const res = await axiosGetRequest("/auth/logout");
+  if (!res) return;
+  successPopup(res.message || "User logged out");
+  return res;
+};
+
+export const resendOTPApi = async (email: string) => {
+  const res = await axiosPutRequest(`/auth/OTP/resend`, { email });
+  if (!res) return;
+  successPopup(res.message || "OTP sent to your email");
   return res;
 };

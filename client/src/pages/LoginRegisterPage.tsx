@@ -1,11 +1,9 @@
-import { loginWithPassword } from "@/api/auth.api";
+import { loginWithPassword, registerApi } from "@/api/auth.api";
 import Login from "@/components/auth/Login";
 import Register from "@/components/auth/Register";
-import { axiosPostRequest } from "@/config/axios";
 import LoginRegisterContext from "@/context/LoginRegisterContext";
 import { login } from "@/features/auth/slice/userSlice";
 import { AppDispatch } from "@/store";
-import { successPopup } from "@/utils/popup";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -30,14 +28,8 @@ const LoginRegisterPage = () => {
     email: string,
     password: string
   ) => {
-    const res = await axiosPostRequest("/auth/register", {
-      username,
-      email,
-      password,
-    });
+    const res = await registerApi(username, email, password);
     if (!res) return;
-    successPopup(res.data || "OTP sent");
-
     navigate("/auth/otp", {
       state: {
         email,

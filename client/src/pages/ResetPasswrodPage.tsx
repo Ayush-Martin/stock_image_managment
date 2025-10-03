@@ -1,8 +1,7 @@
+import { resetPasswordApi } from "@/api/auth.api";
 import ErrorText from "@/components/common/ErrorText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { axiosPostRequest } from "@/config/axios";
-import { successPopup } from "@/utils/popup";
 import { PasswordValidationRule } from "@/utils/validationRules";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
@@ -48,12 +47,8 @@ const ResetPasswordPage = () => {
   });
 
   const submit = async (data: ResetPasswordSchemaType) => {
-    const res = await axiosPostRequest("/auth/resetPassword", {
-      password: data.password,
-      email,
-    });
+    const res = await resetPasswordApi(email, data.password);
     if (!res) return;
-    successPopup(res.message || "Password is changed");
     navigate("/auth");
   };
 

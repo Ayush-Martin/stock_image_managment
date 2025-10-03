@@ -1,8 +1,7 @@
+import { changePassword } from "@/api/auth.api";
 import ErrorText from "@/components/common/ErrorText";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { axiosPatchRequest } from "@/config/axios";
-import { successPopup } from "@/utils/popup";
 import {
   IChangePasswordSchema,
   ChangePasswordSchema,
@@ -29,12 +28,8 @@ const ChangePasswordPage = () => {
   const navigate = useNavigate();
 
   const submit = async (data: IChangePasswordSchema) => {
-    const res = await axiosPatchRequest("/auth/changePassword", {
-      oldPassword: data.currentPassword,
-      newPassword: data.newPassword,
-    });
+    const res = await changePassword(data.currentPassword, data.newPassword);
     if (!res) return;
-    successPopup(res.message || "Password is changed");
     navigate(-1);
   };
 
