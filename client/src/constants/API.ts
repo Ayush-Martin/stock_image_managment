@@ -11,3 +11,6 @@ export const CHANGE_PASSWORD_API = "/auth/changePassword";
 export const VERIFY_OTP_API = "/auth/OTP/verify";
 export const RESEND_OTP_API = "/auth/OTP/resend";
 export const REFRESH_TOKEN_API = "/auth/refresh";
+
+//Images
+export const IMAGES_API = "/images";
