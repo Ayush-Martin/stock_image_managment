@@ -18,6 +18,13 @@ class RefreshUseCase implements IRefreshUseCase {
     private readonly _refreshTokenRepository: IRefreshTokenRepository,
   ) {}
 
+  /**
+   * method to handle refresh tokens
+   * - Checks if the user exists
+   * - Generates access and refresh tokens
+   * @param userId 
+   * @returns 
+   */
   public async execute(userId: string): Promise<{ accessToken: string; refreshToken: string }> {
     const user = await this._userRepository.getUserById(userId);
 

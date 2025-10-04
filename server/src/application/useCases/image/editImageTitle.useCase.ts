@@ -16,6 +16,12 @@ class EditImageTitleUseCase implements IEditImageTitleUseCase {
     binder(this);
   }
 
+  /**
+   * method to edit image title
+   * @param id 
+   * @param editImageTitleDTO 
+   * @returns 
+   */
   public async execute(
     id: string,
     editImageTitleDTO: EditImageTitleDTO,

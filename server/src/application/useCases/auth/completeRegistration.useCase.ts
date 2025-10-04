@@ -21,6 +21,12 @@ class CompleteRegistrationUseCase implements ICompleteRegistrationUseCase {
     private readonly _registerOTPRepository: IRegisterOTPRepository,
   ) {}
 
+  /**
+   * method to complete registration
+   * - Checks if the OTP is verified
+   * - Creates the user
+   * @param completeRegistrationDTO
+   */
   public async execute(completeRegistrationDTO: CompleteRegistrationDTO): Promise<void> {
     const savedOTP = await this._registerOTPRepository.getRegisterOTPByEmail(
       completeRegistrationDTO.email,

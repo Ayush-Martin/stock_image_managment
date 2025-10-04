@@ -20,6 +20,12 @@ class OTPController {
     binder(this);
   }
 
+  /**
+   * method to verify otp
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async verifyOTP(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const verifyOtpDTO = verifyOTPSchema.parse(req.query);
@@ -32,6 +38,12 @@ class OTPController {
     }
   }
 
+  /**
+   * method to reset otp
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async resetOTP(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const resetOtpDTO = ResetOTPSchema.parse(req.body);

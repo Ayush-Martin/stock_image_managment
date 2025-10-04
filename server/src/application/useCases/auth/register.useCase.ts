@@ -26,6 +26,13 @@ class RegisterUseCase implements IRegisterUseCase {
     @inject(TYPES.IEmailService) private emailService: IEmailService,
   ) {}
 
+  /**
+   * method to handle register
+   * - Checks if the user exists
+   * - Generates an OTP
+   * - Sends the OTP via email
+   * @param registerUserDTO 
+   */
   public async execute(registerUserDTO: RegisterUserDTO): Promise<void> {
     const { username, email, password } = registerUserDTO;
 

@@ -7,16 +7,29 @@ import RefreshTokenMapper from "../mappers/refreshToken.mapper";
 
 class RefreshTokenRepository implements IRefreshTokenRepository {
   constructor(@unmanaged() private readonly _RefreshToken: Model<IRefreshTokenDocument>) {}
-
+  
+  /**
+   * method to create refresh token
+   * @param refreshTokenEntity 
+   */
   public async createRefreshToken(refreshTokenEntity: RefreshTokenEntity): Promise<void> {
     const doc = new this._RefreshToken(RefreshTokenMapper.toDocument(refreshTokenEntity));
     await doc.save();
   }
 
+  /**
+   * method to delete refresh token
+   * @param refreshTokenEntity 
+   */
   public async deleteRefreshToken(refreshTokenEntity: RefreshTokenEntity): Promise<void> {
     await this._RefreshToken.deleteOne({ refreshToken: refreshTokenEntity.refreshToken });
   }
 
+  /**
+   * method to get refresh token
+   * @param refreshTokenEntity 
+   * @returns 
+   */
   public async getRefreshToken(
     refreshTokenEntity: RefreshTokenEntity,
   ): Promise<RefreshTokenEntity | null> {

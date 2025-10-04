@@ -1,3 +1,10 @@
+
+
+/**
+ * Generates an email with an OTP code for the user to verify their email
+ * @param {string} otp - The OTP code to be sent in the email
+ * @returns {object} An object containing the subject, text and HTML of the email
+ */
 export const generateOTPEmail = (otp: string) => {
   const subject = "Your One-Time Password (OTP)";
 

@@ -11,6 +11,12 @@ import { VerifyOtpDTO } from "../../DTO/otp.dto";
 class OTPVerificationUseCase implements IOTPVerificationUseCase {
   constructor(@inject(TYPES.IOTPRepository) private readonly _OTPRepository: IOTPRepository) {}
 
+  /**
+   * method to verify OTP
+   * - Checks if the OTP is valid
+   * - Verifies the OTP
+   * @param verifyOtpDTO 
+   */
   public async execute(verifyOtpDTO: VerifyOtpDTO): Promise<void> {
     const storedOTP = await this._OTPRepository.getOTPByEmail(verifyOtpDTO.email);
 

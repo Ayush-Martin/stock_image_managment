@@ -22,7 +22,14 @@ class ForgetPasswordUseCase implements IForgetPasswordUseCase {
     @inject(TYPES.IOTPRepository) private readonly _otpRepository: IOTPRepository,
     @inject(TYPES.IEmailService) private readonly _emailService: IEmailService,
   ) {}
-
+  
+  /**
+   * method to handle forget password
+   * - Checks if the user exists
+   * - Generates an OTP
+   * - Sends the OTP via email
+   * @param forgetPasswordDTO 
+   */
   public async execute(forgetPasswordDTO: ForgetPasswordDTO): Promise<void> {
     const { email } = forgetPasswordDTO;
 
@@ -34,7 +41,7 @@ class ForgetPasswordUseCase implements IForgetPasswordUseCase {
 
     const otp = generateOTP();
 
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
     await this._otpRepository.createOTP(
       new OTPEntity("", new OTP(otp), new Email(email), false, expiresAt),

@@ -21,6 +21,14 @@ class LoginUseCase implements ILoginUseCase {
     private readonly _refreshTokenRepository: IRefreshTokenRepository,
   ) {}
 
+  /**
+   * method to handle login
+   * - Checks if the user exists
+   * - Checks if the password is valid
+   * - Generates access and refresh tokens
+   * @param loginDTO 
+   * @returns 
+   */
   public async execute(loginDTO: LoginDTO): Promise<{ accessToken: string; refreshToken: string }> {
     const { email, password } = loginDTO;
 

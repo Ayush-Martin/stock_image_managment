@@ -28,6 +28,12 @@ class ImageController {
     binder(this);
   }
 
+  /**
+   * method to bulk upload images
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async uploadImages(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const files = req.files as Express.Multer.File[] | undefined;
@@ -58,6 +64,12 @@ class ImageController {
     }
   }
 
+  /**
+   * method to edit image title
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async editImageTitle(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const editImageTitleDTO = EditImageTitleSchema.parse(req.body);
@@ -77,6 +89,12 @@ class ImageController {
     }
   }
 
+  /**
+   * method to edit image file
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async editImage(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const file = req.file as Express.Multer.File | undefined;
@@ -94,6 +112,12 @@ class ImageController {
     }
   }
 
+  /**
+   * method to rearrange images / change image order
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async rearrangeImage(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const rearrangeImageDTO = RearrangeImagesSchema.parse(req.body);
@@ -108,6 +132,12 @@ class ImageController {
     }
   }
 
+  /**
+   * method to delete image
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async deleteImage(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { imageId } = req.params;
@@ -119,6 +149,12 @@ class ImageController {
     }
   }
 
+  /**
+   * method to get images
+   * @param req 
+   * @param res 
+   * @param next 
+   */
   public async getImages(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const userId = req.userId!;

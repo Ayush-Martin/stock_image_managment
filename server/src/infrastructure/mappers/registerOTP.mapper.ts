@@ -6,6 +6,11 @@ import Username from "../../domain/valueObjects/username.vo";
 import { IOTPDocument } from "../DB/Mongodb/models/otp.model";
 
 class RegisterOTPMapper {
+  /**
+   * method to map OTPDocument to OTPEntity
+   * @param doc
+   * @returns
+   */
   static toEntity(doc: IOTPDocument): RegisterOTPEntity {
     return new RegisterOTPEntity(
       doc.id,
@@ -18,6 +23,11 @@ class RegisterOTPMapper {
     );
   }
 
+  /**
+   * method to map OTPEntity to OTPDocument
+   * @param entity
+   * @returns
+   */
   static toDocument(entity: RegisterOTPEntity): Partial<IOTPDocument> {
     return {
       OTP: entity.OTP.value,

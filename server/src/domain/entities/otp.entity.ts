@@ -10,8 +10,11 @@ class OTPEntity {
     public readonly expiresAt: Date,
   ) {}
 
+  /**
+   * method to check if OTP is expired
+   * @returns 
+   */
   public isExpired(): boolean {
-    console.log(this.expiresAt, Date.now());
     return this.expiresAt.getTime() <= Date.now();
   }
 }

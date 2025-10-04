@@ -16,6 +16,14 @@ class ChangePasswordUseCase implements IChangePasswordUseCase {
     @inject(TYPES.IHashingService) private readonly _hashingService: IHashingService,
   ) {}
 
+  /**
+   * method to change password
+   * - Checks if the current password is valid
+   * - Hashes the new password
+   * - Updates the password
+   * @param id 
+   * @param changePasswordDTO 
+   */
   public async execute(id: string, changePasswordDTO: ChangePasswordDTO): Promise<void> {
     const { newPassword, oldPassword } = changePasswordDTO;
 

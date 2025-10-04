@@ -13,6 +13,13 @@ const transporter = createTransport({
 
 @injectable()
 class EmailService implements IEmailService {
+  /**
+   * method to send email
+   * @param to 
+   * @param subject 
+   * @param text 
+   * @param html 
+   */
   public async sendEmail(to: string, subject: string, text: string, html: string): Promise<void> {
     const message = {
       from: envConfig.NODEMAILER_USER,

@@ -12,6 +12,10 @@ class RearrangeImageUseCase implements IRearrangeImageUseCase {
     @inject(TYPES.IImageRepository) private readonly _imageRepository: IImageRepository,
   ) {}
 
+  /**
+   * method to rearrange images
+   * @param rearrangeImageDTO 
+   */
   public async execute(rearrangeImageDTO: RearrangeImagesDTO): Promise<void> {
     const imageEntities = rearrangeImageDTO.images.map(
       (image) => new ImageEntity("", image.id, "", "", image.order),

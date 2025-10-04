@@ -38,6 +38,12 @@ class AuthController {
     binder(this);
   }
 
+  /**
+   * method to register user
+   * @param req
+   * @param res
+   * @param next
+   */
   public async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const registerUserDTO = RegisterUserSchema.parse(req.body);
@@ -50,6 +56,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to complete user registration
+   * @param req
+   * @param res
+   * @param next
+   */
   public async completeRegistration(
     req: Request,
     res: Response,
@@ -66,6 +78,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to login user
+   * @param req
+   * @param res
+   * @param next
+   */
   public async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const loginDTO = LoginSchema.parse(req.body);
@@ -81,6 +99,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to refresh token
+   * @param req
+   * @param res
+   * @param next
+   */
   public async refresh(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const userId = req.userId!;
@@ -96,6 +120,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to forget password
+   * @param req
+   * @param res
+   * @param next
+   */
   public async forgetPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const resetOtpDTO = ForgetPasswordSchema.parse(req.body);
@@ -110,6 +140,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to reset password
+   * @param req
+   * @param res
+   * @param next
+   */
   public async resetPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const resetOtpDTO = ResetPasswordSchema.parse(req.body);
@@ -122,6 +158,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to change password
+   * @param req
+   * @param res
+   * @param next
+   */
   public async changePassword(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const changePasswordDTO = ChangePasswordSchema.parse(req.body);
@@ -134,6 +176,12 @@ class AuthController {
     }
   }
 
+  /**
+   * method to logout user
+   * @param req
+   * @param res
+   * @param next
+   */
   public async logout(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       res

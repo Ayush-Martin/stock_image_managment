@@ -11,12 +11,22 @@ class RegisterOTPRepository extends OTPRepository implements IRegisterOTPReposit
     super(_OTP);
   }
 
+  /**
+   * method to create OTP
+   * @param entity 
+   * @returns 
+   */
   public async createOTP(entity: RegisterOTPEntity): Promise<RegisterOTPEntity> {
     const doc = new this._OTP(RegisterOTPMapper.toDocument(entity));
     await doc.save();
     return RegisterOTPMapper.toEntity(doc);
   }
 
+  /**
+   * method to get OTP by email
+   * @param email 
+   * @returns 
+   */
   public async getRegisterOTPByEmail(email: string): Promise<RegisterOTPEntity | null> {
     const data = await this._OTP.findOne({ email });
     if (!data) return null;

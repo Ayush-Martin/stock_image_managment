@@ -1,3 +1,7 @@
+/**
+ * Binds all prototype methods of an object to itself.
+ * @param {T} instance - The object to bind methods to.
+ */
 export function binder<T extends object>(instance: T): void {
   const proto = Object.getPrototypeOf(instance);
 

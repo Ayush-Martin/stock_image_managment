@@ -18,6 +18,12 @@ class ResetOTPUseCase implements IResetOTPUseCase {
     @inject(TYPES.IEmailService) private _emailService: IEmailService,
   ) {}
 
+  /**
+   * method to handle reset OTP
+   * - Checks if OTP data is stored for the user
+   * - Sends the OTP via email
+   * @param resetOtpDTO
+   */
   public async execute(resetOtpDTO: ResetOtpDTO): Promise<void> {
     const { email } = resetOtpDTO;
 

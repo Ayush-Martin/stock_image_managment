@@ -21,6 +21,13 @@ class AuthMiddleware {
   ) {
     binder(this);
   }
+
+  /**
+   * method to validate access token
+   * @param req
+   * @param res
+   * @param next
+   */
   public async accessTokenValidator(
     req: Request,
     res: Response,
@@ -33,7 +40,7 @@ class AuthMiddleware {
         throw errorCreator(AuthResponseMessage.InvalidAccessToken, StatusCodes.UNAUTHORIZED);
       }
 
-      const payload = await this._jwtService.verifyAccessToken(token);
+      const payload = await this._jwtService.verifyAccessToken(token); //getting payload from the access token
 
       const jwtPayload = payload as { id: string };
 
@@ -44,6 +51,13 @@ class AuthMiddleware {
       next(err);
     }
   }
+
+  /**
+   * method to validate refresh token
+   * @param req
+   * @param res
+   * @param next
+   */
   public async refreshTokenValidator(
     req: Request,
     res: Response,

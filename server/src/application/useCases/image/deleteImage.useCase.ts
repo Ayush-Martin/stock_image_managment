@@ -10,6 +10,11 @@ class DeleteImageUseCase implements IDeleteImageUseCase {
     @inject(TYPES.IImageRepository) private readonly _imageRepository: IImageRepository,
   ) {}
 
+  /**
+   * method to delete image
+   * @param id 
+   * @returns 
+   */
   execute(id: string): Promise<void> {
     return this._imageRepository.deleteImage(id);
   }

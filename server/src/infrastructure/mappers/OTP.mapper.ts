@@ -4,6 +4,11 @@ import OTP from "../../domain/valueObjects/otp.vo";
 import { IOTPDocument } from "../DB/Mongodb/models/otp.model";
 
 class OTPMapper {
+  /**
+   * method to map OTPDocument to OTPEntity
+   * @param doc 
+   * @returns 
+   */
   static toEntity(doc: IOTPDocument) {
     return new OTPEntity(
       doc.id,
@@ -14,6 +19,11 @@ class OTPMapper {
     );
   }
 
+  /**
+   * method to map OTPEntity to OTPDocument
+   * @param entity 
+   * @returns 
+   */
   static toDocument(entity: OTPEntity) {
     return {
       id: entity.id,

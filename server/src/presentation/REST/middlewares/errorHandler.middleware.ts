@@ -12,6 +12,16 @@ class ErrorHandlerMiddleware {
     binder(this);
   }
 
+  /**
+   * method to handle errors
+   * - if error is not zod error, return appropriate status code and message
+   * - if error is zod error, return bad request status code and message
+   * @param err 
+   * @param req 
+   * @param res 
+   * @param _next 
+   * @returns 
+   */
   public handle(err: IAppError | z.ZodError, req: Request, res: Response, _next: NextFunction) {
     console.log(err);
     if (!(err instanceof z.ZodError)) {

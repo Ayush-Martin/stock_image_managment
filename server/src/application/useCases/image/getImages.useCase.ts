@@ -10,6 +10,11 @@ class GetImagesUseCase implements IGetImagesUseCase {
     @inject(TYPES.IImageRepository) private readonly _imageRepository: IImageRepository,
   ) {}
 
+  /**
+   * method to get images
+   * @param userId 
+   * @returns 
+   */
   public async execute(userId: string): Promise<ImageEntity[]> {
     return await this._imageRepository.findImagesByUserId(userId);
   }

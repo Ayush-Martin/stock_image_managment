@@ -17,6 +17,12 @@ class ResetPasswordUseCase implements IResetPasswordUseCase {
     @inject(TYPES.IHashingService) private readonly _hashingService: IHashingService,
   ) {}
 
+  /**
+   * method to reset password
+   * - Checks if the OTP is verified
+   * - Updates the password
+   * @param resetPasswordDTO 
+   */
   public async execute(resetPasswordDTO: ResetPasswordDTO): Promise<void> {
     const { email, password } = resetPasswordDTO;
 

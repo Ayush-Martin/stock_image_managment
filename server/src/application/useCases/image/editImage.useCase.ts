@@ -14,6 +14,12 @@ class EditImageUseCase implements IEditImageUseCase {
     @inject(TYPES.IImageRepository) private readonly _imageRepository: IImageRepository,
   ) {}
 
+  /**
+   * method to edit image
+   * @param id 
+   * @param editImageDTO 
+   * @returns 
+   */
   public async execute(id: string, editImageDTO: EditImageDTO): Promise<ImageEntity> {
     const result = await this._imageRepository.editImageUrl(id, editImageDTO.url);
     if (!result) {

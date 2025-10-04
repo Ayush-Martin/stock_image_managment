@@ -10,7 +10,13 @@ class UploadImagesUseCase implements IUploadImagesUseCase {
   constructor(
     @inject(TYPES.IImageRepository) private readonly _imageRepository: IImageRepository,
   ) {}
-
+  
+  /**
+   * method to upload images
+   * @param userId 
+   * @param uploadImageDTO 
+   * @returns 
+   */
   public async execute(
     userId: string,
     uploadImageDTO: UploadImageDTO,
